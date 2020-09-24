@@ -107,8 +107,6 @@ app.delete('/usuario/:id', [verificaToken, verificaAdmin_Role], function(req, re
 
     let id = req.params.id;
 
-    // Usuario.findByIdAndRemove(id, (err, usuarioBorrado) => {
-
     let cambiaEstado = {
         estado: false
     };

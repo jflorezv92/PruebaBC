@@ -30,9 +30,7 @@ process.env.SEED = process.env.SEED || 'este-es-el-seed-desarrollo';
 // ============================
 let urlDB;
 
-// if (process.env.NODE_ENV === 'dev') {
-//     urlDB = 'mongodb://localhost:27017/marketPlace';
-// } else {
+
     urlDB = 'mongodb+srv://test:YygtVHJgukktmP55@cluster0.tprml.mongodb.net/test';//process.env.MONGO_URI;
-//}
+
 process.env.URLDB = urlDB;
