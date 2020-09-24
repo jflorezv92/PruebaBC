@@ -1,1 +1,4 @@
 # PruebaBC
+Ejecutar:
+
+npm update

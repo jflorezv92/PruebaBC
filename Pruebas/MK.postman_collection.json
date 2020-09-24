@@ -1,0 +1,727 @@
+{
+	"info": {
+		"_postman_id": "f8b05370-5d7e-41c0-975e-46b74b5d0c7e",
+		"name": "MK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Usuario: Modificar Usuario",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "Test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/usuario/5f6cb2ed6d30187b4087cea4",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"usuario",
+						"5f6cb2ed6d30187b4087cea4"
+					]
+				},
+				"description": "Actualiza usuario, con restriccion de datos."
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario: Obtener Usuario",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "Test9",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "test9@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "ADMIN_ROLE",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/usuario?limite=10&desde=1",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"usuario"
+					],
+					"query": [
+						{
+							"key": "limite",
+							"value": "10"
+						},
+						{
+							"key": "desde",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Se obtienes usuarios por paginas y limites"
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario: Borrar Usuario DB",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}:{{port}}/usuario/5f6ac328ab0a6712e8d529dd",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"usuario",
+						"5f6ac328ab0a6712e8d529dd"
+					]
+				},
+				"description": "Elimina usuario de la BD"
+			},
+			"response": []
+		},
+		{
+			"name": "Login: User - Pass",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1dc0ceb7-e5fa-4575-8189-db684bb8d846",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9aaa09e7-0d7b-4c0c-83df-b49eca635f4b",
+						"exec": [
+							"let resp = pm.response.json();\r",
+							"\r",
+							"if(resp.ok){\r",
+							"    let token = resp.token;\r",
+							"    pm.environment.set(\"token\", token);\r",
+							"}else{\r",
+							"    console.log('No se actualizó el token');\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "admin@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"login"
+					]
+				},
+				"description": "Loging user password"
+			},
+			"response": []
+		},
+		{
+			"name": "Categoria: Crear categoria",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "descripcion",
+							"value": "Hogar",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/categoria",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"categoria"
+					],
+					"query": [
+						{
+							"key": "descripcion",
+							"value": "",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Se crea categoria"
+			},
+			"response": []
+		},
+		{
+			"name": "Categoria: Eliminar categoria",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "descripcion",
+							"value": "Ropa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/categoria/id",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"categoria",
+						"id"
+					],
+					"query": [
+						{
+							"key": "descripcion",
+							"value": "Ropa",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Actualizar Categoria"
+			},
+			"response": []
+		},
+		{
+			"name": "Categoria: Actualizar categoria 1",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "descripcion",
+							"value": "Ropa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/categoria/id",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"categoria",
+						"id"
+					],
+					"query": [
+						{
+							"key": "descripcion",
+							"value": "Ropa",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Actualizar Categoria"
+			},
+			"response": []
+		},
+		{
+			"name": "Categoria: Crear categoria",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "descripcion",
+							"value": "Ropa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/categoria",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"categoria"
+					],
+					"query": [
+						{
+							"key": "descripcion",
+							"value": "Ropa",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Crear Categoria"
+			},
+			"response": []
+		},
+		{
+			"name": "Categoria: Obtener Categorias",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}:{{port}}/categoria",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"categoria"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Categoria: Obtener una categoria",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}:{{port}}/categoria/id",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"categoria",
+						"id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Productos: Crear Producto",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "r3",
+							"type": "text"
+						},
+						{
+							"key": "precioUni",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "categoria",
+							"value": "5f6cc1756d30187b4087cead",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/productos",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Usuario: Crear Usuario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "test7",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "test7@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "USER_ROLE",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/usuario",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"usuario"
+					]
+				},
+				"description": "Crear Usuario de Base de Datos"
+			},
+			"response": []
+		},
+		{
+			"name": "Productos: Actualizar Productos",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nombre",
+							"value": "p2",
+							"type": "text"
+						},
+						{
+							"key": "precioUni",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "categoria",
+							"value": "aa",
+							"type": "text"
+						},
+						{
+							"key": "disponible",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/productos/id",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"productos",
+						"id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Productos: Obtener todos los productos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}:{{port}}/productos",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Productos: Obtener productos por id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}:{{port}}/productos/id",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"productos",
+						"id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Productos: Borrar Productos",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}:{{port}}/productos/id",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"productos",
+						"id"
+					]
+				},
+				"description": "Cambia estado del producto a no disponible"
+			},
+			"response": []
+		},
+		{
+			"name": "Productos: Obtener productos por valor",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}:{{port}}/productos/valor",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"productos",
+						"valor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Compra: Compra productos",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "fecha",
+							"value": "2020-09-24T11:57",
+							"type": "text"
+						},
+						{
+							"key": "productos",
+							"value": "5f6cc1d16d30187b4087ceaf,5f6cc1d76d30187b4087ceb0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}:{{port}}/compra",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"compra"
+					]
+				},
+				"description": "Ingresar ide productos"
+			},
+			"response": []
+		},
+		{
+			"name": "Compra: Listar compras por cliente",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}:{{port}}/compra/compras",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"compra",
+						"compras"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
